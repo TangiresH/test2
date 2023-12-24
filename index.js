@@ -1,7 +1,8 @@
 const fs = require('fs');
-const parse = require('./parse.js');
-const CalculatorState = require('./calculatorState.js');
-const handleKeyPress = require('./handleKeyPress.js');
+const parse = require('./components/parse');
+const CalculatorState = require('./components/calculatorState');
+const handleKeyPress = require('./components/handleKeyPress');
+
 
 function processInput(input) {
   const keys = parse(input);

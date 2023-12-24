@@ -1,4 +1,4 @@
-const calculate = require('./calculate.js');
+const calculate = require('./calculate');
 
 
 function handleKeyPress(calculatorState, key) {
