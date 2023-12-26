@@ -1,5 +1,5 @@
 function parse(input) {
-  return input.split(' ');
+  return input.trim().split(' ').filter(Boolean);
 }
 
 module.exports = parse;
