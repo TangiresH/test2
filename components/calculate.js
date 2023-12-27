@@ -1,16 +1,22 @@
-function Calculate(firstNumber, secondNumber, operation) {
-  switch (operation) {
-      case "+":
-          return firstNumber + secondNumber;
-      case "-":
-          return firstNumber - secondNumber;
-      case "*":
-          return firstNumber * secondNumber;
-      case "/":
-          return firstNumber / secondNumber;
+// calculate.js
+function calculate(a, b, op) {
+  switch (op) {
+      case '+':
+          return a + b;
+      case '-':
+          return a - b;
+      case '*':
+          return a * b;
+      case '/':
+          if (b === 0) {
+              console.error("Division by zero");
+              return null;
+          }
+          return a / b;
       default:
-          return secondNumber;
+          console.error("Invalid operator: " + op);
+          return null;
   }
 }
 
-module.exports = Calculate;
+module.exports = calculate;

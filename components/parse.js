@@ -1,24 +1,26 @@
-function Parse(input) {
-  const validInputRegex = /^[0-9+\-*/=\s]+$/;
-  if (!validInputRegex.test(input)) {
-    console.error("Error: Invalid input. Only digits and allowed operators (+ - * / =) are allowed.");
-    return [];
+// parse.js
+function parse(inputString) {
+  if (inputString.includes('\n')) {
+      console.error("Invalid input: Data should be in one line");
+      return null;
   }
 
-  const invalidDigitSequenceRegex = /\d{2,}/;
-  if (invalidDigitSequenceRegex.test(input)) {
-    console.error("Error: Invalid input. Consecutive digits without space are not allowed.");
-    return [];
+  const inputArray = inputString.split(' ');
+
+  if (inputString.includes('  ')) {
+      console.error("Invalid input: Multiple consecutive spaces are not allowed");
+      return null;
   }
 
-  const invalidSpaceRegex = /\s{2,}/;
-  if (invalidSpaceRegex.test(input)) {
-    console.error("Error: Invalid input. Multiple consecutive spaces are not allowed.");
-    return [];
+  for (let i = 0; i < inputArray.length; i++) {
+      const token = inputArray[i];
+      if (!/^[0-9+\-*\/=]$/.test(token)) {
+          console.error("Invalid input: Unexpected character - " + token);
+          return null;
+      }
   }
 
-  const keys = input.split(' ').filter(key => key !== '');
-  return keys;
+  return inputArray;
 }
 
-module.exports = Parse;
+module.exports = parse;
