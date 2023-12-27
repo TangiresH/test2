@@ -1,7 +1,21 @@
 const fs = require('fs');
-const calculate = require('./components/calculate');
+const Parse = require('./components/parse');
+const CalculatorState = require('./components/calculatorState');
+const HandleKeyPress = require('./components/handleKeyPress');
 
-const input = fs.readFileSync('input.txt', 'utf-8').trim();
+const input = fs.readFileSync('input.txt', 'utf8').trim();
 
-const result = calculate(input);
-fs.writeFileSync('output.txt', result);
+const keys = Parse(input);
+
+if (keys.length === 0) {
+    fs.writeFileSync('output.txt', '');
+} else {
+    const calculatorState = new CalculatorState();
+
+    for (const key of keys) {
+        HandleKeyPress(calculatorState, key);
+    }
+
+    fs.writeFileSync('output.txt', calculatorState.screen.toString());
+    console.log('Result has been written to output.txt.');
+}
